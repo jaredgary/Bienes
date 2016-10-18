@@ -42,6 +42,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => 'Acciones', 'url' => ['/tb-bn-acciones/index']],
                     '<li class="divider"></li>',
+                    ['label' => 'Pantalla Logs', 'url' => ['/tb-bn-log/index']],
                 ],
             ],
             Yii::$app->user->isGuest ? (

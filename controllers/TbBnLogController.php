@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\TbBnLog;
 use app\models\TbBnLogSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +21,16 @@ class TbBnLogController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'update'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -68,9 +79,7 @@ class TbBnLogController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->codigoLog]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            return $this->redirect(['index']);
         }
     }
 
@@ -87,9 +96,7 @@ class TbBnLogController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->codigoLog]);
         } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return $this->redirect(['index']);
         }
     }
 
