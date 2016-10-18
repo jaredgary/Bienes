@@ -22,7 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'codigoLog',
-            'codigoAC',
+            [
+                'label' => 'Acciones',
+                'attribute' => 'codigoAC',
+                'value' => 'codigoAC0.DescripcionAC',
+            ],
             'id',
             'descripcion',
             'SistemaUsuario',
