@@ -19,7 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\SerialColumn',
+            ],
 
             'codigoLog',
             [
@@ -32,7 +34,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'SistemaUsuario',
             // 'fecha',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return '';
+                    },
+                    'delete' => function ($url, $model) {
+                        return '';
+                    },
+                ],
+            ],
         ],
+
     ]); ?>
 </div>
