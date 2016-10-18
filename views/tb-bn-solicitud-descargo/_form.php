@@ -12,17 +12,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'FechaSolicitud')->textInput() ?>
-
-    <?= $form->field($model, 'id')->textInput() ?>
+    <?= $form->field($model, 'FechaSolicitud')->widget(
+        \dosamigos\datepicker\DatePicker::className(), [
+        // inline too, not bad
+        'inline' => false,
+        // modify template for custom rendering
+        //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-m-d'
+        ]
+    ]);?>
 
     <?= $form->field($model, 'MotivoSolicitud')->textInput() ?>
 
     <?= $form->field($model, 'Estado')->textInput() ?>
-
-    <?= $form->field($model, 'SistemaFecha')->textInput() ?>
-
-    <?= $form->field($model, 'SistemaUsuario')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

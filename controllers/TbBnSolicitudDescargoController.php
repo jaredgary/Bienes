@@ -5,9 +5,11 @@ namespace app\controllers;
 use Yii;
 use app\models\TbBnSolicitudDescargo;
 use app\models\TbBnSolicitudDescargoSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\User;
 
 /**
  * TbBnSolicitudDescargoController implements the CRUD actions for TbBnSolicitudDescargo model.
@@ -20,6 +22,16 @@ class TbBnSolicitudDescargoController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'update'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -65,7 +77,12 @@ class TbBnSolicitudDescargoController extends Controller
     {
         $model = new TbBnSolicitudDescargo();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $userModel = User::findOne(\Yii::$app->user->identity->getId());
+            $model->id = $userModel->getId();
+            $model->SistemaFecha = date('Y-m-d h:m:s');
+            $model->SistemaUsuario = $userModel->username;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->CodigoSolicitud]);
         } else {
             return $this->render('create', [
