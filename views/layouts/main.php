@@ -42,7 +42,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => 'Agregar Nuevo Bien', 'url' => ['/tb-bn-equipos/index']],
                     '<li class="divider"></li>',
-                    ['label' => 'Mantenimiento de Categorias', 'url' => ['/tb-bn-categorias-bienes/index']],
+                    ['label' => 'Mantenimiento de Categoria', 'url' => ['/tb-bn-categorias-bienes/index']],
                 ],
             ],
             [
