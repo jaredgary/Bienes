@@ -36,14 +36,42 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Inicio', 'url' => ['/site/index']],
             [
-                'label' => 'Logs',
+                'label' => 'Bienes',
+                'items' => [
+                    ['label' => 'Agregar Nuevo Bien', 'url' => ['/tb-bn-equipos/index']],
+                    '<li class="divider"></li>',
+                    ['label' => 'Mantenimiento de Categorias', 'url' => ['/tb-bn-categorias-bienes/index']],
+                ],
+            ],
+            [
+                'label' => 'Carga y Descarga',
+                'items' => [
+                    ['label' => 'Acta de Cargo', 'url' => ['/tb-bn-detalle-acta-asignacion/index']],
+                    '<li class="divider"></li>',
+                    ['label' => 'Acta Descargo', 'url' => ['/tb-bn-detalle-acta-descargo/index']],
+                ],
+            ],
+            [
+                'label' => 'Acta de Compromiso',
+                'items' => [
+                    ['label' => 'Acta de Cargo', 'url' => ['/tb-bn-detalle-acta-asignacion/index']],
+                    '<li class="divider"></li>',
+                    ['label' => 'Acta Descargo', 'url' => ['/tb-bn-detalle-acta-descargo/index']],
+                ],
+            ],
+            [
+                'label' => 'Registro de Actividades',
                 'items' => [
                     ['label' => 'Acciones', 'url' => ['/tb-bn-acciones/index']],
-                    '<li class="divider"></li>',
-                    ['label' => 'Pantalla Logs', 'url' => ['/tb-bn-log/index']],
                 ],
+            ],
+            [
+                'label' => 'Solicitud (Portal del Empleado)',
+                'items' => [
+                    ['label' => 'Solicitud de descargo', 'url' => ['/tb-bn-solicitud-descargo/index']],
+                    ],
             ],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]

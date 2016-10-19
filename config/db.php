@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'sqlsrv:server=DESKTOP-M68RTCU\SQLEXPRESS;Database=sibin',
+    'dsn' => 'sqlsrv:server=SARACHAVEZ-PC;Database=sibin1',
     'username' => 'sa',
-    'password' => 'jardanga',
+    'password' => 'wargon5*#*#',
     'charset' => 'utf8',
 ];
