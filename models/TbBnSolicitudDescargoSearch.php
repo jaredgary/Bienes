@@ -18,8 +18,8 @@ class TbBnSolicitudDescargoSearch extends TbBnSolicitudDescargo
     public function rules()
     {
         return [
-            [['CodigoSolicitud', 'id', 'Estado'], 'integer'],
-            [['FechaSolicitud', 'MotivoSolicitud', 'SistemaFecha', 'SistemaUsuario'], 'safe'],
+            [['CodigoSolicitud', 'Estado'], 'integer'],
+            [['FechaSolicitud', 'id', 'MotivoSolicitud', 'SistemaFecha', 'SistemaUsuario'], 'safe'],
         ];
     }
 
@@ -49,6 +49,8 @@ class TbBnSolicitudDescargoSearch extends TbBnSolicitudDescargo
             'query' => $query,
         ]);
 
+        $query->joinWith('id0');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,13 +63,13 @@ class TbBnSolicitudDescargoSearch extends TbBnSolicitudDescargo
         $query->andFilterWhere([
             'CodigoSolicitud' => $this->CodigoSolicitud,
             'FechaSolicitud' => $this->FechaSolicitud,
-            'id' => $this->id,
             'Estado' => $this->Estado,
             'SistemaFecha' => $this->SistemaFecha,
         ]);
 
         $query->andFilterWhere(['like', 'MotivoSolicitud', $this->MotivoSolicitud])
-            ->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario]);
+            ->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario])
+            ->andFilterWhere(['like', 'user.username', $this->id]);
 
         return $dataProvider;
     }

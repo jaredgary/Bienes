@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'codigoAC',
                 'value' => 'codigoAC0.DescripcionAC',
             ],
-            'id',
+            [
+                'label' => 'Empleado',
+                'attribute' => 'id',
+                'value' => 'id0.username',
+            ],
             'descripcion',
             'SistemaUsuario',
             // 'fecha',

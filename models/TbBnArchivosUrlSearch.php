@@ -18,8 +18,8 @@ class TbBnArchivosUrlSearch extends TbBnArchivosUrl
     public function rules()
     {
         return [
-            [['Codigo', 'CodigoSolicitud', 'codigoTipoSolicitud'], 'integer'],
-            [['Ruta', 'NombreDocumento', 'Formato'], 'safe'],
+            [['Codigo', 'CodigoSolicitud'], 'integer'],
+            [['codigoTipoSolicitud', 'Ruta', 'NombreDocumento', 'Formato'], 'safe'],
         ];
     }
 
@@ -49,6 +49,8 @@ class TbBnArchivosUrlSearch extends TbBnArchivosUrl
             'query' => $query,
         ]);
 
+        $query->joinWith('codigoTipoSolicitud0');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,12 +63,12 @@ class TbBnArchivosUrlSearch extends TbBnArchivosUrl
         $query->andFilterWhere([
             'Codigo' => $this->Codigo,
             'CodigoSolicitud' => $this->CodigoSolicitud,
-            'codigoTipoSolicitud' => $this->codigoTipoSolicitud,
         ]);
 
         $query->andFilterWhere(['like', 'Ruta', $this->Ruta])
             ->andFilterWhere(['like', 'NombreDocumento', $this->NombreDocumento])
-            ->andFilterWhere(['like', 'Formato', $this->Formato]);
+            ->andFilterWhere(['like', 'Formato', $this->Formato])
+            ->andFilterWhere(['like', 'tb_bn_tipos_solicitudes.TipoSolicitud', $this->codigoTipoSolicitud]);
 
         return $dataProvider;
     }

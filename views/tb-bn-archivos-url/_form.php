@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\TbBnSolicitudDescargo;
+use app\models\TbBnTiposSolicitudes;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TbBnArchivosUrl */
@@ -12,9 +14,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'CodigoSolicitud')->textInput() ?>
+    <?= $form->field($model, 'CodigoSolicitud')->dropDownList(
+        \yii\helpers\ArrayHelper::map(TbBnSolicitudDescargo::find()->all(),'CodigoSolicitud', 'CodigoSolicitud'),
+        ['prompt' => 'Seleccione el código de la solicitud']
+    ) ?>
 
-    <?= $form->field($model, 'codigoTipoSolicitud')->textInput() ?>
+    <?= $form->field($model, 'codigoTipoSolicitud')->dropDownList(
+        \yii\helpers\ArrayHelper::map(TbBnTiposSolicitudes::find()->all(),'codigoTipoSolicitud', 'TipoSolicitud'),
+        ['prompt' => 'Seleccione el tipo de solicitud solicitud']
+    ) ?>
 
     <?= $form->field($model, 'Ruta')->textInput() ?>
 

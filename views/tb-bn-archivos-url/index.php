@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'Codigo',
             'CodigoSolicitud',
-            'codigoTipoSolicitud',
+            [
+                'label' => 'Tipo de solicitud',
+                'attribute' => 'codigoTipoSolicitud',
+                'value' => 'codigoTipoSolicitud0.TipoSolicitud',
+            ],
             'Ruta',
             'NombreDocumento',
             // 'Formato',

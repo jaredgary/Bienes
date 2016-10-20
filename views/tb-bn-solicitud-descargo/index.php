@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'CodigoSolicitud',
             'FechaSolicitud',
-            'id',
+            [
+                'label' => 'Empleado',
+                'attribute' => 'id',
+                'value' => 'id0.username',
+            ],
             'MotivoSolicitud',
             'Estado',
             // 'SistemaFecha',

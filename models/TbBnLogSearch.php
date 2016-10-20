@@ -18,8 +18,8 @@ class TbBnLogSearch extends TbBnLog
     public function rules()
     {
         return [
-            [['codigoLog', 'id'], 'integer'],
-            [['descripcion', 'codigoAC', 'SistemaUsuario', 'fecha'], 'safe'],
+            [['codigoLog'], 'integer'],
+            [['descripcion', 'codigoAC', 'id', 'SistemaUsuario', 'fecha'], 'safe'],
         ];
     }
 
@@ -51,6 +51,8 @@ class TbBnLogSearch extends TbBnLog
 
         $query->joinWith('codigoAC0');
 
+        $query->joinWith('id0');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -62,13 +64,13 @@ class TbBnLogSearch extends TbBnLog
         // grid filtering conditions
         $query->andFilterWhere([
             'codigoLog' => $this->codigoLog,
-            'id' => $this->id,
             'fecha' => $this->fecha,
         ]);
 
         $query->andFilterWhere(['like', 'descripcion', $this->descripcion])
             ->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario])
-            ->andFilterWhere(['like', 'tb_bn_acciones.DescripcionAC', $this->codigoAC]);
+            ->andFilterWhere(['like', 'tb_bn_acciones.DescripcionAC', $this->codigoAC])
+            ->andFilterWhere(['like', 'user.username', $this->id]);
 
         return $dataProvider;
     }
