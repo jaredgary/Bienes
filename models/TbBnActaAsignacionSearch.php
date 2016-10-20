@@ -18,8 +18,8 @@ class TbBnActaAsignacionSearch extends TbBnActaAsignacion
     public function rules()
     {
         return [
-            [['CodigoActaAsignacion', 'id', 'CodigoInspector'], 'integer'],
-            [['SistemaUsuario', 'FechaSistema'], 'safe'],
+            [['CodigoActaAsignacion', 'CodigoInspector'], 'integer'],
+            [['id', 'SistemaUsuario', 'FechaSistema'], 'safe'],
         ];
     }
 
@@ -49,6 +49,8 @@ class TbBnActaAsignacionSearch extends TbBnActaAsignacion
             'query' => $query,
         ]);
 
+        $query->joinWith('id0');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -60,12 +62,12 @@ class TbBnActaAsignacionSearch extends TbBnActaAsignacion
         // grid filtering conditions
         $query->andFilterWhere([
             'CodigoActaAsignacion' => $this->CodigoActaAsignacion,
-            'id' => $this->id,
             'FechaSistema' => $this->FechaSistema,
             'CodigoInspector' => $this->CodigoInspector,
         ]);
 
-        $query->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario]);
+        $query->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario])
+              ->andFilterWhere(['like', 'user.username', $this->id]);
 
         return $dataProvider;
     }

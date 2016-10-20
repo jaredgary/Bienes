@@ -14,10 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Categoria')->textInput() ?>
 
-    <?= $form->field($model, 'FechaSistema')->textInput() ?>
-
-    <?= $form->field($model, 'SistemaUsuario')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

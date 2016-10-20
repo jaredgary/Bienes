@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\User;
 use app\models\TbBnActaAsignacion;
 use app\models\TbBnActaAsignacionSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +22,16 @@ class TbBnActaAsignacionController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'update'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -65,7 +77,12 @@ class TbBnActaAsignacionController extends Controller
     {
         $model = new TbBnActaAsignacion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $userModel = User::findOne(\Yii::$app->user->identity->getId());
+            $model->id = $userModel->getId();
+            $model->FechaSistema = date('Y-m-d h:m:s');
+            $model->SistemaUsuario = $userModel->username;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->CodigoActaAsignacion]);
         } else {
             return $this->render('create', [
@@ -84,7 +101,12 @@ class TbBnActaAsignacionController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $userModel = User::findOne(\Yii::$app->user->identity->getId());
+            $model->id = $userModel->getId();
+            $model->FechaSistema = date('Y-m-d h:m:s');
+            $model->SistemaUsuario = $userModel->username;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->CodigoActaAsignacion]);
         } else {
             return $this->render('update', [

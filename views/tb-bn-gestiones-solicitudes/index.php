@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'CodigoGestion',
             'CodigoSolicitud',
-            'CodigoEstado',
+            [
+                'label' => 'Estado',
+                'attribute' => 'CodigoEstado',
+                'value' => 'codigoEstado.Estado',
+            ],
             'Observaciones',
             'SistemaUsuario',
             // 'FechaSistema',

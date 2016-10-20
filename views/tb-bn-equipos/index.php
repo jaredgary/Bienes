@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'CodigoEquipo',
             'Fecha',
             'NumeroInventario',
-            'CodigoCategoria',
+            //'CodigoCategoria',
             'DescripcionEquipo',
             // 'Marca',
             // 'SerieEquipo',
@@ -45,7 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'Observaciones',
             // 'SistemaFecha',
             // 'SistemaUsuario',
-            // 'CodigoEstadoAsignacion',
+            [
+                'label' => 'Estado de asignacion',
+                'attribute' => 'CodigoEstadoAsignacion',
+                'value' => 'codigoEstadoAsignacion.EstadoAsignacion',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

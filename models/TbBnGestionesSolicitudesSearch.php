@@ -18,8 +18,8 @@ class TbBnGestionesSolicitudesSearch extends TbBnGestionesSolicitudes
     public function rules()
     {
         return [
-            [['CodigoGestion', 'CodigoSolicitud', 'CodigoEstado'], 'integer'],
-            [['Observaciones', 'SistemaUsuario', 'FechaSistema'], 'safe'],
+            [['CodigoGestion', 'CodigoSolicitud'], 'integer'],
+            [['CodigoEstado','Observaciones', 'SistemaUsuario', 'FechaSistema'], 'safe'],
         ];
     }
 
@@ -49,6 +49,8 @@ class TbBnGestionesSolicitudesSearch extends TbBnGestionesSolicitudes
             'query' => $query,
         ]);
 
+        $query->joinWith('codigoEstado');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,12 +63,12 @@ class TbBnGestionesSolicitudesSearch extends TbBnGestionesSolicitudes
         $query->andFilterWhere([
             'CodigoGestion' => $this->CodigoGestion,
             'CodigoSolicitud' => $this->CodigoSolicitud,
-            'CodigoEstado' => $this->CodigoEstado,
             'FechaSistema' => $this->FechaSistema,
         ]);
 
         $query->andFilterWhere(['like', 'Observaciones', $this->Observaciones])
-            ->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario]);
+            ->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario])
+            ->andFilterWhere(['like', 'tb_bn_estado_solicitud.Estado', $this->CodigoEstado]);
 
         return $dataProvider;
     }

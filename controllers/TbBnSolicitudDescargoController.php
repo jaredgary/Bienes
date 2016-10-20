@@ -101,7 +101,12 @@ class TbBnSolicitudDescargoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $userModel = User::findOne(\Yii::$app->user->identity->getId());
+            $model->id = $userModel->getId();
+            $model->SistemaFecha = date('Y-m-d h:m:s');
+            $model->SistemaUsuario = $userModel->username;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->CodigoSolicitud]);
         } else {
             return $this->render('update', [

@@ -12,12 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
-
-    <?= $form->field($model, 'SistemaUsuario')->textInput() ?>
-
-    <?= $form->field($model, 'FechaSistema')->textInput() ?>
-
     <?= $form->field($model, 'CodigoInspector')->textInput() ?>
 
     <div class="form-group">

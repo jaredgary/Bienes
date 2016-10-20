@@ -18,8 +18,8 @@ class TbBnEquiposSearch extends TbBnEquipos
     public function rules()
     {
         return [
-            [['CodigoEquipo', 'CodigoCategoria', 'CodigoDepartamento', 'CodigoEdificio', 'CodigoTipoDoc', 'id', 'CodigoEstadoEquipo', 'CodigoEstadoAsignacion'], 'integer'],
-            [['Fecha', 'NumeroInventario', 'DescripcionEquipo', 'Marca', 'SerieEquipo', 'Color', 'Telefono', 'Piso', 'NumeroDocumento', 'FechaDocumento', 'Observaciones', 'SistemaFecha', 'SistemaUsuario'], 'safe'],
+            [['CodigoEquipo', 'CodigoCategoria', 'CodigoDepartamento', 'CodigoEdificio', 'CodigoTipoDoc', 'id', 'CodigoEstadoEquipo'], 'integer'],
+            [['Fecha', 'NumeroInventario', 'DescripcionEquipo', 'Marca', 'SerieEquipo', 'Color', 'Telefono', 'Piso', 'NumeroDocumento', 'FechaDocumento', 'Observaciones', 'SistemaFecha', 'SistemaUsuario','CodigoEstadoAsignacion'], 'safe'],
             [['CostoUnitario'], 'number'],
         ];
     }
@@ -50,6 +50,8 @@ class TbBnEquiposSearch extends TbBnEquipos
             'query' => $query,
         ]);
 
+        $query->joinWith('codigoEstadoAsignacion');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -71,7 +73,6 @@ class TbBnEquiposSearch extends TbBnEquipos
             'id' => $this->id,
             'CodigoEstadoEquipo' => $this->CodigoEstadoEquipo,
             'SistemaFecha' => $this->SistemaFecha,
-            'CodigoEstadoAsignacion' => $this->CodigoEstadoAsignacion,
         ]);
 
         $query->andFilterWhere(['like', 'NumeroInventario', $this->NumeroInventario])
@@ -83,7 +84,8 @@ class TbBnEquiposSearch extends TbBnEquipos
             ->andFilterWhere(['like', 'Piso', $this->Piso])
             ->andFilterWhere(['like', 'NumeroDocumento', $this->NumeroDocumento])
             ->andFilterWhere(['like', 'Observaciones', $this->Observaciones])
-            ->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario]);
+            ->andFilterWhere(['like', 'SistemaUsuario', $this->SistemaUsuario])
+            ->andFilterWhere(['like', 'tb_bn_estadoasignacion.EstadoAsignacion', $this->CodigoEstadoAsignacion]);
 
         return $dataProvider;
     }
