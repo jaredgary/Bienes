@@ -68,7 +68,7 @@ AppAsset::register($this);
                 ],
             ],
             [
-                'label' => 'Solicitud (Portal del Empleado)',
+                'label' => 'Solicitudes',
                 'items' => [
                     ['label' => 'Solicitud de descargo', 'url' => ['/tb-bn-solicitud-descargo/index']],
                     ],
