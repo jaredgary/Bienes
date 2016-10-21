@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'CodigoDetalleActaAsignacion',
             'CodigoActaAsignacion',
-            'CodigoEquipo',
+            [
+                'label' => 'Equipo',
+                'attribute' => 'CodigoEquipo',
+                'value' => 'codigoEquipo.DescripcionEquipo',
+            ],
             'CodigoDepartamento',
             'Telefono',
             // 'Piso',

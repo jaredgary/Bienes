@@ -18,8 +18,8 @@ class TbBnDetalleActaAsignacionSearch extends TbBnDetalleActaAsignacion
     public function rules()
     {
         return [
-            [['CodigoDetalleActaAsignacion', 'CodigoActaAsignacion', 'CodigoEquipo', 'CodigoDepartamento', 'CodigoEdificio', 'CodigoEstadoEquipo'], 'integer'],
-            [['Telefono', 'Piso'], 'safe'],
+            [['CodigoDetalleActaAsignacion', 'CodigoActaAsignacion', 'CodigoDepartamento', 'CodigoEdificio', 'CodigoEstadoEquipo'], 'integer'],
+            [['CodigoEquipo', 'Telefono', 'Piso'], 'safe'],
         ];
     }
 
@@ -49,6 +49,8 @@ class TbBnDetalleActaAsignacionSearch extends TbBnDetalleActaAsignacion
             'query' => $query,
         ]);
 
+        $query->joinWith('codigoEquipo');
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,14 +63,14 @@ class TbBnDetalleActaAsignacionSearch extends TbBnDetalleActaAsignacion
         $query->andFilterWhere([
             'CodigoDetalleActaAsignacion' => $this->CodigoDetalleActaAsignacion,
             'CodigoActaAsignacion' => $this->CodigoActaAsignacion,
-            'CodigoEquipo' => $this->CodigoEquipo,
             'CodigoDepartamento' => $this->CodigoDepartamento,
             'CodigoEdificio' => $this->CodigoEdificio,
             'CodigoEstadoEquipo' => $this->CodigoEstadoEquipo,
         ]);
 
         $query->andFilterWhere(['like', 'Telefono', $this->Telefono])
-            ->andFilterWhere(['like', 'Piso', $this->Piso]);
+            ->andFilterWhere(['like', 'Piso', $this->Piso])
+            ->andFilterWhere(['like', 'tb_bn_equipos.DescripcionEquipo', $this->CodigoEquipo]);
 
         return $dataProvider;
     }

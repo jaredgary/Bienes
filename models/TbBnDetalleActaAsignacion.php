@@ -53,13 +53,13 @@ class TbBnDetalleActaAsignacion extends \yii\db\ActiveRecord
     {
         return [
             'CodigoDetalleActaAsignacion' => 'Codigo Detalle Acta Asignacion',
-            'CodigoActaAsignacion' => 'Codigo Acta Asignacion',
-            'CodigoEquipo' => 'Codigo Equipo',
-            'CodigoDepartamento' => 'Codigo Departamento',
+            'CodigoActaAsignacion' => 'Acta de Asignacion',
+            'CodigoEquipo' => 'Equipo',
+            'CodigoDepartamento' => 'Departamento',
             'Telefono' => 'Telefono',
             'Piso' => 'Piso',
-            'CodigoEdificio' => 'Codigo Edificio',
-            'CodigoEstadoEquipo' => 'Codigo Estado Equipo',
+            'CodigoEdificio' => 'Edificio',
+            'CodigoEstadoEquipo' => 'Estado del Equipo',
         ];
     }
 
