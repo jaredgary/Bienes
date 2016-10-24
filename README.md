@@ -98,7 +98,9 @@ return [
 
 ### RBAC
 
-Execute: php yii migrate --migrationPath=@yii/rbac/migrations
+Execute: 
+- php yii migrate --migrationPath=@yii/rbac/migrations
+- php yii rbac/init
 
 ### Migrations
 - php yii migrate/create create_TABLENAME_table
@@ -106,6 +108,15 @@ Execute: php yii migrate --migrationPath=@yii/rbac/migrations
 
 ### Date picker plugin
 - php composer.phar require "2amigos/yii2-date-picker-widget" "*"
+
+### Suggest Dropdown Search
+- composer require kartik-v/yii2-widget-select2 "*"
+
+### Dynamic Forms
+- composer require --prefer-dist wbraganca/yii2-dynamicform "*"
+
+### Gridview Karthik expand row
+- composer require kartik-v/yii2-grid "*"
 
 **NOTES:**
 - Yii won't create the database for you, this has to be done manually before you can access it.

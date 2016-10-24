@@ -62,7 +62,7 @@ AppAsset::register($this);
                 ],
             ],
             [
-                'label' => 'Registro de Actividades',
+                'label' => 'Actividades',
                 'items' => [
                     ['label' => 'Acciones', 'url' => ['/tb-bn-acciones/index']],
                 ],

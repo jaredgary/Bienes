@@ -85,7 +85,7 @@ class TbBnSolicitudDescargoController extends Controller
             $model->save();
             return $this->redirect(['view', 'id' => $model->CodigoSolicitud]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

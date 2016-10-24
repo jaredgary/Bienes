@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\TbBnSolicitudDescargo;
 use app\models\TbBnTiposSolicitudes;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TbBnArchivosUrl */
@@ -14,15 +15,25 @@ use app\models\TbBnTiposSolicitudes;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'CodigoSolicitud')->dropDownList(
-        \yii\helpers\ArrayHelper::map(TbBnSolicitudDescargo::find()->all(),'CodigoSolicitud', 'CodigoSolicitud'),
-        ['prompt' => 'Seleccione el código de la solicitud']
-    ) ?>
+    <?= $form->field($model, 'CodigoSolicitud')->widget(Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(TbBnSolicitudDescargo::find()->all(),'CodigoSolicitud', 'CodigoSolicitud'),
+        'language' => 'en',
+        'options' => ['placeholder' => 'Seleccione el código de la solicitud'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>
 
-    <?= $form->field($model, 'codigoTipoSolicitud')->dropDownList(
-        \yii\helpers\ArrayHelper::map(TbBnTiposSolicitudes::find()->all(),'codigoTipoSolicitud', 'TipoSolicitud'),
-        ['prompt' => 'Seleccione el tipo de solicitud solicitud']
-    ) ?>
+    <?= $form->field($model, 'codigoTipoSolicitud')->widget(Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(TbBnTiposSolicitudes::find()->all(),'codigoTipoSolicitud', 'TipoSolicitud'),
+        'language' => 'en',
+        'options' => ['placeholder' => 'Seleccione el tipo de solicitud solicitud'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>
 
     <?= $form->field($model, 'Ruta')->textInput() ?>
 
