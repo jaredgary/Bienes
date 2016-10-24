@@ -104,6 +104,9 @@ Execute: php yii migrate --migrationPath=@yii/rbac/migrations
 - php yii migrate/create create_TABLENAME_table
 - php yii migrate
 
+### Date picker plugin
+- php composer.phar require "2amigos/yii2-date-picker-widget" "*"
+
 **NOTES:**
 - Yii won't create the database for you, this has to be done manually before you can access it.
 - Check and edit the other files in the `config/` directory to customize your application as required.
