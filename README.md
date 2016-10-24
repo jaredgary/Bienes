@@ -87,11 +87,20 @@ CONFIGURATION
 Edit the file `config/db.php` with real data, for example:
 
 ```php
+//MySql
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=yii2basic',
     'username' => 'root',
     'password' => '1234',
+    'charset' => 'utf8',
+];
+//SQL Server
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'sqlsrv:server=SERVERNAME;Database=DBNAME',
+    'username' => 'sa',
+    'password' => '123',
     'charset' => 'utf8',
 ];
 ```
