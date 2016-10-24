@@ -101,8 +101,8 @@ return [
 Execute: php yii migrate --migrationPath=@yii/rbac/migrations
 
 ### Migrations
-php yii migrate/create create_TABLENAME_table
-php yii migrate
+- php yii migrate/create create_TABLENAME_table
+- php yii migrate
 
 **NOTES:**
 - Yii won't create the database for you, this has to be done manually before you can access it.
